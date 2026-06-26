@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MeEscutaRH - AP Soluções Humanas</title>
+<meta name="description" content="MeEscutaRH: um canal seguro para colaboradores e empresas. Canal confidencial para envio de documentos, dúvidas, sugestões e denúncias.">
+<link rel="icon" href="https://apsolucoeshumanas.com.br/wp-content/uploads/2026/03/cropped-atual-logo-AP-SOLUCOES-SUMANAS-192x192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --mer-navy:#252550;
+    --mer-navy-dark:#1a1a3a;
+    --mer-ink:#000000;
+    --mer-muted:#5a5a5a;
+    --mer-line:#e0e0e3;
+    --mer-cream:#f4f4f6;
+    --mer-red:#b31d1a;
+    --mer-red-dark:#8f1714;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;font-family:"Open Sans",sans-serif;color:var(--mer-ink);
+    background:#fff;line-height:1.6;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3{font-family:"Open Sans",sans-serif;font-weight:800;line-height:1.25;margin:0 0 .5em;}
+  p{margin:0 0 1em;}
+  ul{margin:0;padding:0;list-style:none;}
+  .mer-container{max-width:720px;margin:0 auto;padding:0 24px;}
+  .mer-brand-name{color:var(--mer-red);font-weight:700;}
+
+  /* Header */
+  .mer-header{border-bottom:1px solid var(--mer-line);}
+  .mer-header .mer-header-inner{
+    max-width:1160px;margin:0 auto;padding:14px 24px;display:flex;
+    align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  }
+  .mer-header img{height:72px;width:auto;}
+  .mer-header nav ul{display:flex;gap:22px;flex-wrap:wrap;}
+  .mer-header nav a{font-weight:600;font-size:.92rem;padding:4px 0;border-bottom:2px solid transparent;}
+  .mer-header nav a:hover{color:var(--mer-navy);border-color:var(--mer-navy);}
+  .mer-header nav a.is-active{color:var(--mer-red);border-color:var(--mer-red);}
+
+  /* Split layout: texto à esquerda, formulário à direita */
+  .mer-split-bg{
+    background-color:transparent;
+    background-image:linear-gradient(135deg, #252550 60%, #1D1D1E 100%);
+  }
+  .mer-split{
+    max-width:1160px;margin:0 auto;padding:56px 24px 64px;
+    display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;
+  }
+  .mer-split-text{text-align:left;}
+  .mer-icon{width:84px;height:84px;object-fit:contain;margin:0 0 22px;}
+  .mer-eyebrow{
+    display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.08em;
+    text-transform:uppercase;color:#fff;margin-bottom:12px;
+  }
+  .mer-title{font-size:clamp(1.5rem,3vw,2.1rem);margin:0 0 .5em;color:#fff;}
+  .mer-subtitle{color:#d6d6e4;font-size:1.05rem;margin:0 0 28px;}
+
+  .mer-support{margin:0;}
+  .mer-support p{font-size:.96rem;color:#c7c7d8;}
+  .mer-cta-line{font-weight:700;color:#fff!important;}
+
+  /* Form */
+  .mer-form-card{
+    background:#fff;border:1px solid var(--mer-line);border-top:4px solid var(--mer-red);
+    border-radius:14px;padding:30px;width:100%;position:sticky;top:24px;
+  }
+  .mer-form-card h3{font-size:1.2rem;margin-bottom:18px;}
+  .mer-field{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;}
+  .mer-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .mer-field label{font-size:.9rem;font-weight:600;}
+  .mer-req{color:var(--mer-red);}
+  .mer-hint{font-size:.82rem;color:var(--mer-muted);margin:2px 0 4px;line-height:1.45;}
+
+  .mer-form-card input,
+  .mer-form-card select,
+  .mer-form-card textarea{
+    width:100%;padding:11px 12px;border:1px solid var(--mer-line);border-radius:9px;
+    font-size:.95rem;font-family:inherit;background:var(--mer-cream);color:var(--mer-ink);
+    transition:border-color .15s,box-shadow .15s;
+  }
+  .mer-form-card input:focus,
+  .mer-form-card select:focus,
+  .mer-form-card textarea:focus{
+    outline:none;border-color:var(--mer-red);box-shadow:0 0 0 3px rgba(179,29,26,.14);background:#fff;
+  }
+  .mer-form-card textarea{resize:vertical;min-height:110px;}
+
+  .mer-contact{
+    border:1px solid var(--mer-line);border-radius:11px;padding:18px;margin:0 0 18px;
+    display:flex;flex-direction:column;gap:16px;
+  }
+  .mer-contact legend{font-size:.9rem;font-weight:700;padding:0 8px;}
+  .mer-contact-state{font-weight:500;color:var(--mer-muted);font-size:.8rem;}
+
+  .mer-submit{
+    width:100%;background:var(--mer-red);color:#fff;border:none;border-radius:10px;
+    padding:15px 18px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit;
+    transition:background .15s,transform .08s;
+  }
+  .mer-submit:hover{background:var(--mer-red-dark);}
+  .mer-submit:active{transform:translateY(1px);}
+  .mer-submit:disabled{opacity:.6;cursor:not-allowed;}
+
+  .mer-feedback{font-size:.95rem;line-height:1.45;}
+  .mer-feedback:not(:empty){
+    display:flex;align-items:flex-start;gap:10px;margin-bottom:18px;
+    padding:14px 16px;border-radius:10px;font-weight:600;
+    animation:mer-feedback-in .25s ease;
+  }
+  .mer-feedback.ok{color:#1a7a3a;background:#eaf7ee;border:1px solid #bfe6cb;}
+  .mer-feedback.err{color:var(--mer-red-dark);background:#fcecee;border:1px solid #f3c2c9;}
+  .mer-feedback::before{font-size:1.1rem;line-height:1;}
+  .mer-feedback.ok::before{content:"✓";}
+  .mer-feedback.err::before{content:"!";font-weight:800;}
+  @keyframes mer-feedback-in{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:translateY(0);}}
+
+  .mer-hidden{display:none!important;}
+  .mer-invalid{border-color:var(--mer-red)!important;box-shadow:0 0 0 3px rgba(179,29,26,.14)!important;}
+
+  /* Footer */
+  .mer-footer{background:var(--mer-navy);color:#d6d6e4;padding:56px 0 0;margin-top:0;}
+  .mer-footer-grid{
+    max-width:1160px;margin:0 auto;padding:0 24px;
+    display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:40px;padding-bottom:36px;
+  }
+  .mer-footer-grid img{height:60px;margin-bottom:14px;}
+  .mer-footer-grid p{color:#c7c7d8;font-size:.92rem;}
+  .mer-footer-grid h4{color:var(--mer-red);font-size:1.05rem;margin-bottom:14px;}
+  .mer-footer-links li{margin-bottom:8px;}
+  .mer-footer-links a{color:#fff;font-size:.92rem;transition:color .15s;}
+  .mer-footer-links a:hover{color:var(--mer-red);}
+  .mer-footer-links a.is-active{color:var(--mer-red);font-weight:700;}
+  .mer-footer-contacts li{display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:.92rem;}
+  .mer-footer-contacts a{color:#fff;}
+  .mer-footer-contacts svg{width:16px;height:16px;fill:var(--mer-red);flex:0 0 auto;}
+  .mer-social-row{display:flex;align-items:center;gap:12px;margin-top:18px;}
+  .mer-social-row a{
+    width:34px;height:34px;border-radius:50%;background:var(--mer-red);display:flex;
+    align-items:center;justify-content:center;transition:background .15s;
+  }
+  .mer-social-row a:hover{background:var(--mer-red-dark);}
+  .mer-social-row svg{width:15px;height:15px;fill:#fff;}
+  .mer-social-row span{color:var(--mer-red);font-weight:700;font-size:.95rem;}
+  .mer-footer-bottom-bar{border-top:1px solid rgba(255,255,255,.15);padding:18px 24px;text-align:center;font-size:.85rem;color:#b9b9cf;}
+  .mer-footer-bottom-bar a{text-decoration:underline;}
+
+  @media (max-width:900px){
+    .mer-split{grid-template-columns:1fr;gap:36px;padding:40px 24px 48px;}
+    .mer-form-card{position:static;}
+  }
+  @media (max-width:760px){
+    .mer-footer-grid{grid-template-columns:1fr;gap:30px;}
+  }
+  @media (max-width:640px){
+    .mer-row{grid-template-columns:1fr;}
+    .mer-form-card{padding:22px;}
+    .mer-header nav ul{justify-content:center;gap:14px;width:100%;}
+    .mer-header img{height:56px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="mer-header">
+  <div class="mer-header-inner">
+    <a href="https://apsolucoeshumanas.com.br/"><img src="https://apsolucoeshumanas.com.br/wp-content/uploads/2026/03/Logo-AP-Solucoes-cabecalho.jpeg" alt="AP Soluções Humanas"></a>
+    <nav aria-label="Menu">
+      <ul>
+        <li><a href="https://apsolucoeshumanas.com.br/">Home</a></li>
+        <li><a href="https://apsolucoeshumanas.com.br/index.php/quem-somos/">Quem Somos</a></li>
+        <li><a href="https://apsolucoeshumanas.com.br/index.php/solucoes/">Soluções</a></li>
+        <li><a href="https://apsolucoeshumanas.com.br/index.php/contato/">Contato</a></li>
+        <li><a href="https://apsolucoeshumanas.com.br/index.php/cadastrar-curriculo/">Cadastrar Currículo</a></li>
+        <li><a href="https://apsolucoeshumanas.com.br/index.php/me-escuta-rh/" class="is-active">MeEscutaRH</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="mer-split-bg">
+<div class="mer-split">
+  <div class="mer-split-text">
+    <img class="mer-icon" src="https://apsolucoeshumanas.com.br/wp-content/uploads/elementor/thumbs/icone-me-escuta-rh-dourado-rk9xhp54v6rqm552764ll3u6ivcxnelw49zzkwpb6w.png" alt="Ícone MeEscutaRH">
+    <p class="mer-eyebrow">Canal Confidencial</p>
+    <h1 class="mer-title"><span class="mer-brand-name">MeEscutaRH</span>: um canal seguro para colaboradores e empresas</h1>
+    <p class="mer-subtitle">Canal confidencial para envio de documentos, dúvidas e sugestões para empresas clientes. As denúncias podem ser registradas de forma segura por colaboradores de qualquer empresa.</p>
+
+    <div class="mer-support">
+      <p>O <span class="mer-brand-name">MeEscutaRH</span> é um canal confidencial para envio de documentos, dúvidas, sugestões e denúncias.</p>
+      <p>Colaboradores de empresas clientes da AP Soluções Humanas podem utilizá-lo para encaminhar atestados, documentos admissionais e outras solicitações, além de esclarecer dúvidas sobre holerite, benefícios, ponto e pagamentos.</p>
+      <p>Também é possível registrar sugestões com propostas de melhorias na empresa, contribuições colaborativas e ideias para aprimorar o ambiente de trabalho.</p>
+      <p>As denúncias podem ser feitas por colaboradores de qualquer empresa e servem para relatar situações de risco psicossocial, como assédio, conflitos, falhas de comunicação e excesso de trabalho.</p>
+      <p class="mer-cta-line">Preencha o formulário e envie sua solicitação com segurança.</p>
+    </div>
+  </div>
+
+  <div class="mer-form-card">
+      <h3>Envie seu Relato de Forma Confidencial</h3>
+
+      <form id="merForm" novalidate>
+        <div class="mer-feedback" id="merFeedback"></div>
+
+        <div class="mer-field">
+          <label for="tipoSolicitacao">Tipo de solicitação <span class="mer-req">*</span></label>
+          <p class="mer-hint">
+            Escolha abaixo o tipo de solicitação.<br>
+            <strong>Envio de documentos:</strong> atestados, documentos admissionais e outros documentos solicitados.<br>
+            <strong>Dúvidas:</strong> holerite, benefícios, ponto e pagamentos.<br>
+            <strong>Denúncias:</strong> situações previstas no filtro de denúncia.<br>
+            <strong>Sugestões:</strong> ideias, melhorias ou observações.
+          </p>
+          <select id="tipoSolicitacao" name="tipo_solicitacao" required>
+            <option value="" disabled selected>Selecione...</option>
+            <option value="Envio de documentos">Envio de documentos</option>
+            <option value="Dúvidas">Dúvidas</option>
+            <option value="Denúncias">Denúncias</option>
+            <option value="Sugestões">Sugestões</option>
+          </select>
+        </div>
+
+        <div class="mer-field">
+          <label for="empresa">Empresa <span class="mer-req">*</span></label>
+          <select id="empresa" name="empresa" required>
+            <option value="" disabled selected>Selecione a empresa...</option>
+            <option value="110 - RANCHO COLONIAL GRILL">110 - RANCHO COLONIAL GRILL</option>
+            <option value="120 - STEEL NA VEIA">120 - STEEL NA VEIA</option>
+            <option value="130 - AXOLOTL COOKIES &amp; COFFEE">130 - AXOLOTL COOKIES &amp; COFFEE</option>
+            <option value="__OUTRA__">Não encontrei a empresa</option>
+          </select>
+        </div>
+
+        <div class="mer-field mer-hidden" id="wrapEmpresaManual">
+          <label for="empresaManual">Nome da empresa <span class="mer-req">*</span></label>
+          <input type="text" id="empresaManual" name="empresa_manual" placeholder="Digite o nome da empresa">
+        </div>
+
+        <div class="mer-row mer-hidden" id="wrapLocalidade">
+          <div class="mer-field">
+            <label for="cidade">Cidade <span class="mer-req">*</span></label>
+            <input type="text" id="cidade" name="cidade" placeholder="Cidade">
+          </div>
+          <div class="mer-field">
+            <label for="estado">Estado <span class="mer-req">*</span></label>
+            <input type="text" id="estado" name="estado" placeholder="Estado" maxlength="40">
+          </div>
+        </div>
+
+        <div class="mer-field mer-hidden" id="wrapSetor">
+          <label for="setor">Setor <span class="mer-req">*</span></label>
+          <select id="setor" name="setor">
+            <option value="" disabled selected>Selecione o setor...</option>
+            <option>Administrativo</option>
+            <option>Atendimento</option>
+            <option>Comercial/Vendas</option>
+            <option>Compras</option>
+            <option>Estoque/Almoxarifado</option>
+            <option>Expedição/Recebimento</option>
+            <option>Faturamento/Fiscal</option>
+            <option>Financeiro</option>
+            <option>Logística</option>
+            <option>Manutenção</option>
+            <option>Marketing</option>
+            <option>Operações</option>
+            <option>PCP/Produção</option>
+            <option>Qualidade</option>
+            <option>RH</option>
+            <option>Segurança do Trabalho</option>
+            <option>TI</option>
+          </select>
+        </div>
+
+        <div class="mer-field mer-hidden" id="wrapMotivo">
+          <label for="motivo">Motivo da denúncia <span class="mer-req">*</span></label>
+          <select id="motivo" name="motivo_denuncia">
+            <option value="" disabled selected>Selecione...</option>
+            <option>Assédio moral</option>
+            <option>Assédio sexual</option>
+            <option>Bullying</option>
+            <option>Conflitos com liderança</option>
+            <option>Conflitos com colegas</option>
+            <option>Falhas de comunicação</option>
+            <option>Excesso de trabalho</option>
+            <option>Sentimento de injustiça</option>
+            <option>Situações de risco psicossocial</option>
+            <option>Outros</option>
+          </select>
+        </div>
+
+        <div class="mer-field mer-hidden" id="wrapAnexo">
+          <label for="anexo">Anexar documento <span class="mer-req">*</span></label>
+          <p class="mer-hint">Formatos aceitos: JPG e PDF.</p>
+          <input type="file" id="anexo" name="anexo" accept=".jpg,.jpeg,.pdf,image/jpeg,application/pdf">
+        </div>
+
+        <div class="mer-field">
+          <label for="descricao" id="lblDescricao">Descrição da solicitação</label>
+          <textarea id="descricao" name="descricao" rows="5" placeholder="Descreva sua solicitação"></textarea>
+        </div>
+
+        <fieldset class="mer-contact">
+          <legend>Dados de contato <span class="mer-contact-state" id="contatoState"></span></legend>
+          <div class="mer-field">
+            <label for="nome">Nome <span class="mer-req mer-req-dyn">*</span></label>
+            <input type="text" id="nome" name="nome" placeholder="Seu nome">
+          </div>
+          <div class="mer-row">
+            <div class="mer-field">
+              <label for="whatsapp">WhatsApp para contato <span class="mer-req mer-req-dyn">*</span></label>
+              <input type="tel" id="whatsapp" name="whatsapp" placeholder="(00) 00000-0000">
+            </div>
+            <div class="mer-field">
+              <label for="email">E-mail <span class="mer-req mer-req-dyn">*</span></label>
+              <input type="email" id="email" name="email" placeholder="seu@email.com">
+            </div>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="mer-submit" id="merSubmit">
+          Enviar solicitação com segurança
+        </button>
+      </form>
+  </div>
+</div>
+</section>
+
+<footer class="mer-footer">
+  <div class="mer-footer-grid">
+    <div>
+      <img src="https://apsolucoeshumanas.com.br/wp-content/uploads/2026/03/AP-logo-site-Branco-fundo-transparenteFinal.png" alt="AP Soluções Humanas">
+      <p>Consultoria e Assessoria em RH humanizado para Pequenas e Médias Empresas. Transformamos equipes com empatia e estratégia.</p>
+      <div class="mer-social-row">
+        <a href="https://www.instagram.com/gepereira.apsolucoeshumanas/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg></a>
+        <a href="https://www.facebook.com/gepereira.apsolucoeshumanas/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 512 512"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg></a>
+        <a href="https://www.linkedin.com/in/gepereira-apsolucoeshumanas/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg></a>
+        <span>Siga-nos</span>
+      </div>
+    </div>
+
+    <div>
+      <h4>Links Rápidos</h4>
+      <ul class="mer-footer-links">
+        <li><a href="https://apsolucoeshumanas.com.br/">Home</a></li>
+        <li><a href="https://apsolucoeshumanas.com.br/index.php/quem-somos/">Quem Somos</a></li>
+        <li><a href="https://apsolucoeshumanas.com.br/index.php/solucoes/">Soluções</a></li>
+        <li><a href="https://apsolucoeshumanas.com.br/index.php/contato/">Contato</a></li>
+        <li><a href="https://apsolucoeshumanas.com.br/index.php/cadastrar-curriculo/">Cadastrar Currículo</a></li>
+        <li><a href="https://apsolucoeshumanas.com.br/index.php/me-escuta-rh/" class="is-active">MeEscutaRH</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Contatos</h4>
+      <ul class="mer-footer-contacts">
+        <li><svg viewBox="0 0 512 512"><path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"/></svg><a href="mailto:assessoria@apsolucoeshumanas.com.br">assessoria@apsolucoeshumanas.com.br</a></li>
+        <li><svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg><a href="https://wa.me/551998290064" target="_blank" rel="noopener">(19) 9 9829-0064</a></li>
+        <li><svg viewBox="0 0 512 512"><path d="M497.39 361.8l-112-48a24 24 0 0 0-28 6.9l-49.6 60.6A370.66 370.66 0 0 1 130.6 204.11l60.6-49.6a23.94 23.94 0 0 0 6.9-28l-48-112A24.16 24.16 0 0 0 122.6.61l-104 24A24 24 0 0 0 0 48c0 256.5 207.9 464 464 464a24 24 0 0 0 23.4-18.6l24-104a24.29 24.29 0 0 0-14.01-27.6z"/></svg><a href="tel:+551998290064">(19) 9 9829-0064</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="mer-footer-bottom-bar">© 2025 AP Soluções Humanas. Todos os direitos reservados. | <a href="https://apsolucoeshumanas.com.br/">Política de Privacidade</a></div>
+</footer>
+
+<script>
+/* ===========================================================
+   MeEscutaRH — lógica condicional ("filtro") + envio ao webhook
+   =========================================================== */
+(function(){
+  // ###############################################################
+  // ###  COLE A URL DO SEU WEBHOOK (Production URL do n8n) AQUI  ###
+  const WEBHOOK_URL = "https://criadordigital-n8n-webhook.syxuur.easypanel.host/webhook/MeEscutaRH";
+  // ###############################################################
+
+  const form = document.getElementById("merForm");
+  if(!form) return;
+
+  const tipo         = document.getElementById("tipoSolicitacao");
+  const empresa      = document.getElementById("empresa");
+  const wrapEmpManual= document.getElementById("wrapEmpresaManual");
+  const empManual    = document.getElementById("empresaManual");
+  const wrapLocal    = document.getElementById("wrapLocalidade");
+  const cidade       = document.getElementById("cidade");
+  const estado       = document.getElementById("estado");
+  const wrapSetor    = document.getElementById("wrapSetor");
+  const setor        = document.getElementById("setor");
+  const wrapMotivo   = document.getElementById("wrapMotivo");
+  const motivo       = document.getElementById("motivo");
+  const wrapAnexo    = document.getElementById("wrapAnexo");
+  const anexo        = document.getElementById("anexo");
+  const lblDescricao = document.getElementById("lblDescricao");
+  const descricao    = document.getElementById("descricao");
+  const nome         = document.getElementById("nome");
+  const whatsapp     = document.getElementById("whatsapp");
+  const email        = document.getElementById("email");
+  const contatoState = document.getElementById("contatoState");
+  const reqDyn       = document.querySelectorAll(".mer-req-dyn");
+  const feedback     = document.getElementById("merFeedback");
+  const submitBtn    = document.getElementById("merSubmit");
+
+  const show = el => el.classList.remove("mer-hidden");
+  const hide = el => el.classList.add("mer-hidden");
+
+  function isCliente(){
+    return empresa.value !== "" && empresa.value !== "__OUTRA__";
+  }
+  function isNaoCliente(){
+    return empresa.value === "__OUTRA__";
+  }
+
+  function atualizar(){
+    const t = tipo.value;
+
+    if(isNaoCliente()){ show(wrapEmpManual); show(wrapLocal); }
+    else { hide(wrapEmpManual); hide(wrapLocal); }
+
+    if(t === "Denúncias"){ show(wrapSetor); show(wrapMotivo); }
+    else { hide(wrapSetor); hide(wrapMotivo); }
+
+    if(t === "Envio de documentos"){ show(wrapAnexo); }
+    else { hide(wrapAnexo); }
+
+    if(t === "Sugestões"){
+      lblDescricao.textContent = "Sua sugestão";
+      descricao.placeholder = "Descreva sua sugestão de melhoria";
+    } else {
+      lblDescricao.textContent = "Descrição da solicitação";
+      descricao.placeholder = "Descreva sua solicitação";
+    }
+
+    const contatoObrigatorio = (t === "Envio de documentos" || t === "Dúvidas");
+    reqDyn.forEach(s => s.style.visibility = contatoObrigatorio ? "visible" : "hidden");
+    contatoState.textContent = contatoObrigatorio ? "(obrigatório)" : "(opcional)";
+  }
+
+  tipo.addEventListener("change", atualizar);
+  empresa.addEventListener("change", atualizar);
+  atualizar();
+
+  form.addEventListener("input", e=>{
+    if(e.target.classList) e.target.classList.remove("mer-invalid");
+  });
+
+  function marcarErro(el){ el.classList.add("mer-invalid"); }
+  function visivel(wrap){ return !wrap.classList.contains("mer-hidden"); }
+
+  function validar(){
+    const erros = [];
+    document.querySelectorAll(".mer-invalid").forEach(el=>el.classList.remove("mer-invalid"));
+
+    const t = tipo.value;
+    if(!t){ marcarErro(tipo); erros.push("Selecione o tipo de solicitação."); }
+    if(!empresa.value){ marcarErro(empresa); erros.push("Selecione a empresa."); }
+
+    if(isNaoCliente()){
+      if(!empManual.value.trim()){ marcarErro(empManual); erros.push("Informe o nome da empresa."); }
+      if(!cidade.value.trim()){ marcarErro(cidade); erros.push("Informe a cidade."); }
+      if(!estado.value.trim()){ marcarErro(estado); erros.push("Informe o estado."); }
+    }
+
+    if(t === "Denúncias"){
+      if(!setor.value){ marcarErro(setor); erros.push("Selecione o setor."); }
+      if(!motivo.value){ marcarErro(motivo); erros.push("Selecione o motivo da denúncia."); }
+    }
+
+    if(t === "Envio de documentos"){
+      if(!anexo.files.length){ marcarErro(anexo); erros.push("Anexe o documento (JPG ou PDF)."); }
+      else if(!/\.(jpe?g|pdf)$/i.test(anexo.files[0].name)){
+        marcarErro(anexo); erros.push("O documento deve ser JPG ou PDF.");
+      }
+    }
+
+    if(t === "Envio de documentos" || t === "Dúvidas"){
+      if(!nome.value.trim()){ marcarErro(nome); erros.push("Informe seu nome."); }
+      if(!whatsapp.value.trim()){ marcarErro(whatsapp); erros.push("Informe seu WhatsApp."); }
+      if(!email.value.trim()){ marcarErro(email); erros.push("Informe seu e-mail."); }
+    }
+    if(email.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())){
+      marcarErro(email); erros.push("E-mail inválido.");
+    }
+    return erros;
+  }
+
+  function mostrarFeedback(tipo, msg){
+    feedback.className = "mer-feedback " + tipo;
+    feedback.textContent = msg;
+    feedback.scrollIntoView({ behavior:"smooth", block:"center" });
+  }
+
+  form.addEventListener("submit", async function(e){
+    e.preventDefault();
+    feedback.className = "mer-feedback";
+    feedback.textContent = "";
+
+    const erros = validar();
+    if(erros.length){
+      mostrarFeedback("err", erros[0]);
+      return;
+    }
+
+    if(WEBHOOK_URL === "COLE_SEU_WEBHOOK_AQUI"){
+      mostrarFeedback("err", "Configuração pendente: a URL do webhook ainda não foi definida.");
+      return;
+    }
+
+    const fd = new FormData();
+    fd.append("tipo_solicitacao", tipo.value);
+    fd.append("eh_cliente", isCliente() ? "sim" : "nao");
+    fd.append("empresa", isNaoCliente() ? empManual.value.trim() : empresa.value);
+    fd.append("cidade", visivel(wrapLocal) ? cidade.value.trim() : "");
+    fd.append("estado", visivel(wrapLocal) ? estado.value.trim() : "");
+    fd.append("setor", visivel(wrapSetor) ? setor.value : "");
+    fd.append("motivo_denuncia", visivel(wrapMotivo) ? motivo.value : "");
+    fd.append("descricao", descricao.value.trim());
+    fd.append("nome", nome.value.trim());
+    fd.append("whatsapp", whatsapp.value.trim());
+    fd.append("email", email.value.trim());
+    fd.append("origem", "MeEscutaRH - site");
+    fd.append("data_envio", new Date().toISOString());
+    if(visivel(wrapAnexo) && anexo.files.length){
+      fd.append("anexo", anexo.files[0], anexo.files[0].name);
+    }
+
+    submitBtn.disabled = true;
+    const txtOriginal = submitBtn.textContent;
+    submitBtn.textContent = "Enviando...";
+
+    try{
+      const resp = await fetch(WEBHOOK_URL, { method:"POST", body: fd });
+      if(!resp.ok) throw new Error("HTTP " + resp.status);
+      form.reset();
+      atualizar();
+      mostrarFeedback("ok", "Solicitação enviada com segurança. Obrigado!");
+    }catch(err){
+      mostrarFeedback("err", "Não foi possível enviar agora. Verifique a conexão e tente novamente.");
+    }finally{
+      submitBtn.disabled = false;
+      submitBtn.textContent = txtOriginal;
+    }
+  });
+})();
+</script>
+</body>
+</html>
