@@ -35,14 +35,20 @@
   /* Header */
   .mer-header{border-bottom:1px solid var(--mer-line);}
   .mer-header .mer-header-inner{
-    max-width:1160px;margin:0 auto;padding:14px 24px;display:flex;
-    align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+    position:relative;max-width:1160px;margin:0 auto;padding:14px 24px;display:flex;
+    align-items:center;justify-content:space-between;gap:20px;
   }
   .mer-header img{height:72px;width:auto;}
   .mer-header nav ul{display:flex;gap:22px;flex-wrap:wrap;}
   .mer-header nav a{font-weight:600;font-size:.92rem;padding:4px 0;border-bottom:2px solid transparent;}
   .mer-header nav a:hover{color:var(--mer-navy);border-color:var(--mer-navy);}
   .mer-header nav a.is-active{color:var(--mer-red);border-color:var(--mer-red);}
+
+  .mer-nav-toggle{
+    display:none;background:none;border:none;cursor:pointer;padding:6px;
+    flex-direction:column;gap:5px;flex:0 0 auto;
+  }
+  .mer-nav-toggle span{width:26px;height:2px;background:var(--mer-ink);display:block;}
 
   /* Split layout: texto à esquerda, formulário à direita */
   .mer-split-bg{
@@ -158,10 +164,19 @@
   @media (max-width:760px){
     .mer-footer-grid{grid-template-columns:1fr;gap:30px;}
   }
+  @media (max-width:760px){
+    .mer-nav-toggle{display:flex;}
+    .mer-header nav{
+      position:absolute;top:100%;left:0;right:0;background:#fff;
+      border-bottom:1px solid var(--mer-line);max-height:0;overflow:hidden;
+      transition:max-height .25s ease;z-index:50;
+    }
+    .mer-header nav.is-open{max-height:480px;}
+    .mer-header nav ul{flex-direction:column;padding:8px 24px 20px;gap:6px;}
+  }
   @media (max-width:640px){
     .mer-row{grid-template-columns:1fr;}
     .mer-form-card{padding:22px;}
-    .mer-header nav ul{justify-content:center;gap:14px;width:100%;}
     .mer-header img{height:56px;}
   }
 </style>
@@ -171,6 +186,7 @@
 <header class="mer-header">
   <div class="mer-header-inner">
     <a href="https://apsolucoeshumanas.com.br/"><img src="https://apsolucoeshumanas.com.br/wp-content/uploads/2026/03/Logo-AP-Solucoes-cabecalho.jpeg" alt="AP Soluções Humanas"></a>
+    <button class="mer-nav-toggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <nav aria-label="Menu">
       <ul>
         <li><a href="https://apsolucoeshumanas.com.br/">Home</a></li>
@@ -368,6 +384,19 @@
 </footer>
 
 <script>
+/* ===========================================================
+   Menu mobile (hambúrguer)
+   =========================================================== */
+(function(){
+  const toggle = document.querySelector(".mer-nav-toggle");
+  const nav = document.querySelector(".mer-header nav");
+  if(!toggle || !nav) return;
+  toggle.addEventListener("click", () => {
+    const open = nav.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+})();
+
 /* ===========================================================
    MeEscutaRH — lógica condicional ("filtro") + envio ao webhook
    =========================================================== */
