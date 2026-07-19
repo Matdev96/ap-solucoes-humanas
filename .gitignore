@@ -1,0 +1,11 @@
+.DS_Store
+Thumbs.db
+desktop.ini
+.claude/settings.local.json
+*.pdf
+*.pptx
+*.doc
+*.docx
+node_modules/
+dist/
+.astro/
