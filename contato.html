@@ -3,7 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contato - AP Soluções Humanas</title>
+<title>Contato | AP Soluções Humanas</title>
+<meta name="description" content="Fale com a AP Soluções Humanas e descubra como fortalecer o RH da sua empresa. Atendimento por WhatsApp, e-mail ou formulário.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apsolucoeshumanas.com.br/contato">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="AP Soluções Humanas">
+<meta property="og:title" content="Contato | AP Soluções Humanas">
+<meta property="og:description" content="Fale com a AP Soluções Humanas e descubra como fortalecer o RH da sua empresa. Atendimento por WhatsApp, e-mail ou formulário.">
+<meta property="og:url" content="https://apsolucoeshumanas.com.br/contato">
+<meta property="og:image" content="https://apsolucoeshumanas.com.br/assets/img/foto-home-secao1.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contato | AP Soluções Humanas">
+<meta name="twitter:description" content="Fale com a AP Soluções Humanas e descubra como fortalecer o RH da sua empresa. Atendimento por WhatsApp, e-mail ou formulário.">
+<meta name="twitter:image" content="https://apsolucoeshumanas.com.br/assets/img/foto-home-secao1.png">
 <link rel="icon" href="assets/img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,600,700|Roboto+Slab:600,700|Open+Sans:400,600,700&display=swap" rel="stylesheet">
@@ -13,43 +27,47 @@
 
 <header class="site-header">
   <div class="container">
-    <a href="index.html" class="brand"><img src="assets/img/logo.jpeg" alt="AP Soluções Humanas"></a>
+    <a href="/" class="brand"><img src="assets/img/logo.jpeg" alt="AP Soluções Humanas"></a>
     <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <nav class="main-nav">
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="quem-somos.html">Quem Somos</a></li>
-        <li><a href="solucoes.html">Soluções</a></li>
-        <li><a href="contato.html" class="is-active">Contato</a></li>
-        <li><a href="cadastrar-curriculo.html">Cadastrar Currículo</a></li>
-        <li><a href="me-escuta-rh.html" class="nav-mer">MeEscutaRH</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="quem-somos">Quem Somos</a></li>
+        <li><a href="solucoes">Soluções</a></li>
+        <li><a href="contato" class="is-active">Contato</a></li>
+        <li><a href="cadastrar-curriculo">Cadastrar Currículo</a></li>
+        <li><a href="me-escuta-rh" class="nav-mer">MeEscutaRH</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
-<section class="section">
+<section class="section hero-photo hero-photo--aguia-frente">
   <div class="container">
-    <div class="section-head" style="margin-bottom:48px;">
-      <h2>Fale Conosco</h2>
+    <div class="section-head" style="margin-bottom:0;">
+      <h1 style="color:#fff;">Fale Conosco</h1>
       <p>Estamos aqui para ajudar. Entre em contato e descubra como podemos fortalecer o RH da sua empresa com soluções humanizadas e estratégicas.</p>
     </div>
+  </div>
+</section>
 
+<section class="section">
+  <div class="container">
     <div class="contact-grid">
-      <div class="form-card">
+      <div class="form-card form-card--accent">
         <h3>Envie Sua Mensagem</h3>
         <form id="contatoForm" novalidate>
           <div class="form-feedback"></div>
           <div class="form-field">
-            <label for="empresa">Sua empresa <span class="req">*</span></label>
+            <label for="empresa">Nome da Empresa <span class="req">*</span></label>
             <input type="text" id="empresa" name="empresa" placeholder="Sua empresa" required>
           </div>
           <div class="form-field">
-            <label for="nome">Seu nome <span class="req">*</span></label>
+            <label for="nome">Nome <span class="req">*</span></label>
             <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
           </div>
           <div class="form-field">
-            <label for="whatsapp">Whatsapp <span class="req">*</span></label>
+            <label for="whatsapp">Whatsapp para contato <span class="req">*</span></label>
             <input type="tel" id="whatsapp" name="whatsapp" placeholder="Whatsapp" required>
           </div>
           <div class="form-field">
@@ -60,11 +78,15 @@
             <label for="assunto">Assunto <span class="req">*</span></label>
             <input type="text" id="assunto" name="assunto" placeholder="Ex: Dúvida sobre Mentoria" required>
           </div>
+          <div class="form-field">
+            <label for="mensagem">Mensagem <span class="req">*</span></label>
+            <textarea id="mensagem" name="mensagem" rows="5" placeholder="Detalhe sua situação aqui..." required></textarea>
+          </div>
           <button type="submit" class="btn-submit">Enviar</button>
         </form>
       </div>
 
-      <div>
+      <div class="contact-info-card">
         <h3>Informações de Contato</h3>
         <ul class="contact-info-list">
           <li>
@@ -104,12 +126,12 @@
       <div>
         <h4>Links Rápidos</h4>
         <ul class="footer-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="quem-somos.html">Quem Somos</a></li>
-          <li><a href="solucoes.html">Soluções</a></li>
-          <li><a href="contato.html">Contato</a></li>
-          <li><a href="cadastrar-curriculo.html">Cadastrar Currículo</a></li>
-          <li><a href="me-escuta-rh.html">MeEscutaRH</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="quem-somos">Quem Somos</a></li>
+          <li><a href="solucoes">Soluções</a></li>
+          <li><a href="contato">Contato</a></li>
+          <li><a href="cadastrar-curriculo">Cadastrar Currículo</a></li>
+          <li><a href="me-escuta-rh" class="footer-mer">MeEscutaRH</a></li>
         </ul>
       </div>
       <div>
@@ -121,7 +143,7 @@
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">© 2025 AP Soluções Humanas. Todos os direitos reservados. | Política de Privacidade</div>
+    <div class="footer-bottom">© 2025 AP Soluções Humanas. Todos os direitos reservados. | <a href="https://apsolucoeshumanas.com.br/">Política de Privacidade</a></div>
   </div>
 </footer>
 

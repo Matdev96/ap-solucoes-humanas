@@ -1,0 +1,300 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "CadastrarCurriculo",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "https://apsolucoeshumanas.com.br"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [-304, 400],
+      "id": "cc-webhook-0001",
+      "name": "Webhook1",
+      "webhookId": "cc-778fa281-457e-4f62-a4f2-cadastro01"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "tem-anexo-cond",
+              "leftValue": "={{ $binary.curriculo }}",
+              "rightValue": "",
+              "operator": {
+                "type": "any",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [-80, 400],
+      "id": "cc-if-0002",
+      "name": "Tem anexo?"
+    },
+    {
+      "parameters": {
+        "inputDataFieldName": "curriculo",
+        "name": "=Currículo - {{ $('Webhook1').item.json.body.nome_completo }} - {{ $now.format('yyyyMMdd_HHmmss') }}",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "COLOQUE_AQUI_O_ID_DA_PASTA_DE_CURRICULOS",
+          "mode": "list",
+          "cachedResultName": "⚠️ Defina a pasta de Currículos no Google Drive",
+          "cachedResultUrl": ""
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [192, 272],
+      "id": "cc-drive-0003",
+      "name": "Upload anexo",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "pCaJjpl585P8WzxT",
+          "name": "Angelina"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f1",
+              "name": "Data_Hora",
+              "value": "={{ $now.format('dd/MM/yyyy HH:mm') }}",
+              "type": "string"
+            },
+            {
+              "id": "f2",
+              "name": "Nome_Completo",
+              "value": "={{ $('Webhook1').item.json.body.nome_completo }}",
+              "type": "string"
+            },
+            {
+              "id": "f3",
+              "name": "Telefone",
+              "value": "={{ $('Webhook1').item.json.body.telefone }}",
+              "type": "string"
+            },
+            {
+              "id": "f4",
+              "name": "Email",
+              "value": "={{ $('Webhook1').item.json.body.email }}",
+              "type": "string"
+            },
+            {
+              "id": "f5",
+              "name": "Data_Nascimento",
+              "value": "={{ $('Webhook1').item.json.body.data_nascimento }}",
+              "type": "string"
+            },
+            {
+              "id": "f6",
+              "name": "Perfil",
+              "value": "={{ $('Webhook1').item.json.body.perfil }}",
+              "type": "string"
+            },
+            {
+              "id": "f7",
+              "name": "Area_Interesse",
+              "value": "={{ $('Webhook1').item.json.body.area_interesse }}",
+              "type": "string"
+            },
+            {
+              "id": "f8",
+              "name": "Especifique_Interesse",
+              "value": "={{ $('Webhook1').item.json.body.especifique_interesse }}",
+              "type": "string"
+            },
+            {
+              "id": "f9",
+              "name": "Curriculo_Link",
+              "value": "={{ $json.webViewLink || '' }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [368, 416],
+      "id": "cc-set-0004",
+      "name": "Montar dados"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1ZVqVwCwkZPlCM1QQu24CMKwl0yjYGSC47tadEyEKmJ0",
+          "mode": "list",
+          "cachedResultName": "AP Soluções - Candidaturas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ZVqVwCwkZPlCM1QQu24CMKwl0yjYGSC47tadEyEKmJ0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "CadastroCurriculo",
+          "mode": "list",
+          "cachedResultName": "⚠️ Selecione/crie a aba 'CadastroCurriculo' nesta planilha"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Data_Hora": "={{ $json.Data_Hora }}",
+            "Nome_Completo": "={{ $json.Nome_Completo }}",
+            "Telefone": "={{ $json.Telefone }}",
+            "Email": "={{ $json.Email }}",
+            "Data_Nascimento": "={{ $json.Data_Nascimento }}",
+            "Perfil": "={{ $json.Perfil }}",
+            "Area_Interesse": "={{ $json.Area_Interesse }}",
+            "Especifique_Interesse": "={{ $json.Especifique_Interesse }}",
+            "Curriculo_Link": "={{ $json.Curriculo_Link }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            { "id": "Data_Hora", "displayName": "Data_Hora", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+            { "id": "Nome_Completo", "displayName": "Nome_Completo", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+            { "id": "Telefone", "displayName": "Telefone", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+            { "id": "Email", "displayName": "Email", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+            { "id": "Data_Nascimento", "displayName": "Data_Nascimento", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+            { "id": "Perfil", "displayName": "Perfil", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+            { "id": "Area_Interesse", "displayName": "Area_Interesse", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+            { "id": "Especifique_Interesse", "displayName": "Especifique_Interesse", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+            { "id": "Curriculo_Link", "displayName": "Curriculo_Link", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [608, 288],
+      "id": "cc-sheets-0005",
+      "name": "Append row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "6AFJYM7zW7EHx96x",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "=assessoria@apsolucoeshumanas.com.br",
+        "toEmail": "=assessoria@apsolucoeshumanas.com.br",
+        "subject": "=Novo currículo cadastrado - {{ $json.Nome_Completo }}",
+        "emailFormat": "text",
+        "text": "=Novo currículo recebido pelo site (Cadastrar Currículo):\n\nNome completo: {{ $json.Nome_Completo }}\nTelefone/WhatsApp: {{ $json.Telefone }}\nE-mail: {{ $json.Email }}\nData de nascimento: {{ $json.Data_Nascimento }}\n\nPerfil:\n{{ $json.Perfil }}\n\nÁrea de interesse: {{ $json.Area_Interesse }}\nEspecifique o interesse:\n{{ $json.Especifique_Interesse }}\n\nCurrículo: {{ $json.Curriculo_Link || 'Não anexado' }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [608, 528],
+      "id": "cc-email-0006",
+      "name": "Enviar e-mail",
+      "webhookId": "cc-c541116d-12f9-45d3-9303-cadastro02",
+      "credentials": {
+        "smtp": {
+          "id": "YktzIH4ZBXiu2XVz",
+          "name": "SMTP account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [848, 400],
+      "id": "cc-merge-0007",
+      "name": "Aguardar Sheets+Email"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"status\": \"ok\" } }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "https://apsolucoeshumanas.com.br"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1056, 400],
+      "id": "cc-respond-0008",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "connections": {
+    "Webhook1": {
+      "main": [[{ "node": "Tem anexo?", "type": "main", "index": 0 }]]
+    },
+    "Tem anexo?": {
+      "main": [
+        [{ "node": "Upload anexo", "type": "main", "index": 0 }],
+        [{ "node": "Montar dados", "type": "main", "index": 0 }]
+      ]
+    },
+    "Upload anexo": {
+      "main": [[{ "node": "Montar dados", "type": "main", "index": 0 }]]
+    },
+    "Montar dados": {
+      "main": [
+        [
+          { "node": "Append row in sheet1", "type": "main", "index": 0 },
+          { "node": "Enviar e-mail", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Append row in sheet1": {
+      "main": [[{ "node": "Aguardar Sheets+Email", "type": "main", "index": 0 }]]
+    },
+    "Enviar e-mail": {
+      "main": [[{ "node": "Aguardar Sheets+Email", "type": "main", "index": 1 }]]
+    },
+    "Aguardar Sheets+Email": {
+      "main": [[{ "node": "Respond to Webhook", "type": "main", "index": 0 }]]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "instanceId": "ap-solucoes-humanas-cadastrar-curriculo"
+  }
+}

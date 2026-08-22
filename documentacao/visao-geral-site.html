@@ -1,0 +1,436 @@
+<title>Anatomia do Site AP Soluções Humanas</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&family=Open+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+
+  :root{
+    --paper:#FAF7F1;
+    --paper-raised:#FFFFFF;
+    --ink:#1C1C1C;
+    --ink-soft:#5B564C;
+    --navy:#252550;
+    --red:#B31D1A;
+    --red-soft:#B31D1A14;
+    --gold:#96762F;
+    --line:#E4DED0;
+    --shadow:0 1px 2px rgba(28,28,28,.04), 0 8px 24px rgba(28,28,28,.05);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#15142A;
+      --paper-raised:#1D1C36;
+      --ink:#EFEAE0;
+      --ink-soft:#B6B2C9;
+      --navy:#9C9CD9;
+      --red:#FF8177;
+      --red-soft:#FF817720;
+      --gold:#E0BD7C;
+      --line:#33324F;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#15142A;
+    --paper-raised:#1D1C36;
+    --ink:#EFEAE0;
+    --ink-soft:#B6B2C9;
+    --navy:#9C9CD9;
+    --red:#FF8177;
+    --red-soft:#FF817720;
+    --gold:#E0BD7C;
+    --line:#33324F;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Open Sans",system-ui,sans-serif;
+    line-height:1.65;font-size:16.5px;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--red-soft);}
+
+  .page{max-width:760px;margin:0 auto;padding:64px 24px 120px;}
+  @media (max-width:600px){.page{padding:40px 18px 80px;}}
+
+  h1,h2,h3,h4{
+    font-family:"Roboto Slab",Georgia,serif;color:var(--navy);
+    line-height:1.22;margin:0 0 .4em;text-wrap:balance;font-weight:700;
+  }
+  h1{font-size:clamp(1.9rem,4.2vw,2.5rem);}
+  h2{font-size:clamp(1.35rem,3vw,1.65rem);margin-top:3em;padding-top:.6em;border-top:1px solid var(--line);}
+  h3{font-size:1.05rem;color:var(--ink);margin-top:1.8em;}
+  h4{font-size:.95rem;color:var(--ink);margin-top:1.4em;}
+  p{margin:0 0 1.1em;color:var(--ink);max-width:64ch;}
+  .lede{color:var(--ink-soft);font-size:1.08rem;max-width:60ch;}
+  strong{color:var(--ink);font-weight:700;}
+  a{color:var(--red);text-decoration-color:var(--red-soft);text-underline-offset:2px;}
+  code, .mono{
+    font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.86em;
+    background:var(--paper-raised);border:1px solid var(--line);border-radius:4px;
+    padding:.1em .4em;color:var(--navy);
+  }
+
+  .eyebrow{
+    font-family:"JetBrains Mono",monospace;font-size:.72rem;font-weight:600;
+    letter-spacing:.09em;text-transform:uppercase;color:var(--red);margin:0 0 .8em;
+  }
+
+  /* ---- Palette strip ---- */
+  .palette{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:1.6em 0 2.2em;}
+  .swatch{background:var(--paper-raised);padding:16px 10px;text-align:center;}
+  .swatch__chip{width:100%;height:44px;border-radius:7px;margin-bottom:10px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);}
+  .swatch__name{font-size:.74rem;font-weight:700;color:var(--ink);}
+  .swatch__hex{font-family:"JetBrains Mono",monospace;font-size:.68rem;color:var(--ink-soft);}
+  @media (max-width:600px){.palette{grid-template-columns:repeat(3,1fr);}}
+
+  .type-sample{display:flex;flex-direction:column;gap:14px;margin:1.6em 0 2em;}
+  .type-row{display:flex;align-items:baseline;gap:18px;padding:14px 16px;background:var(--paper-raised);border:1px solid var(--line);border-radius:10px;flex-wrap:wrap;}
+  .type-row__label{font-family:"JetBrains Mono",monospace;font-size:.68rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em;min-width:92px;}
+  .type-row__sample{flex:1;min-width:200px;}
+
+  /* ---- sitemap ---- */
+  .sitemap{list-style:none;margin:1.6em 0 2em;padding:0;display:flex;flex-direction:column;gap:2px;}
+  .sitemap li{
+    display:flex;align-items:baseline;gap:14px;padding:11px 4px;border-bottom:1px solid var(--line);
+  }
+  .sitemap .path{font-family:"JetBrains Mono",monospace;font-size:.82rem;color:var(--red);min-width:180px;}
+  .sitemap .desc{color:var(--ink-soft);font-size:.92rem;}
+
+  /* ---- page cards ---- */
+  .pagecard{
+    background:var(--paper-raised);border:1px solid var(--line);border-radius:14px;
+    padding:26px 28px;margin:1.6em 0 2.4em;box-shadow:var(--shadow);
+  }
+  .pagecard__head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:.2em;}
+  .pagecard__title{font-family:"Roboto Slab",serif;font-weight:700;color:var(--navy);font-size:1.15rem;}
+  .pagecard__path{font-family:"JetBrains Mono",monospace;font-size:.78rem;color:var(--red);}
+  .pagecard hr{border:none;border-top:1px solid var(--line);margin:1.1em 0;}
+  .pagecard h4{margin-top:1.2em;font-size:.82rem;text-transform:uppercase;letter-spacing:.05em;color:var(--gold);}
+  .pagecard h4:first-of-type{margin-top:0;}
+  .ctas{display:flex;flex-wrap:wrap;gap:8px;margin-top:.4em;}
+  .cta{
+    font-family:"JetBrains Mono",monospace;font-size:.76rem;padding:5px 10px;border-radius:999px;
+    border:1px solid var(--line);color:var(--ink-soft);white-space:nowrap;
+  }
+  .cta--hard{border-color:var(--red);color:var(--red);font-weight:600;}
+  .cta--soft{border-color:var(--navy);color:var(--navy);}
+
+  /* ---- pipeline ---- */
+  .pipeline{
+    display:flex;flex-wrap:wrap;align-items:stretch;gap:0;margin:1.6em 0;
+    border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--paper-raised);
+  }
+  .pstep{
+    flex:1 1 150px;padding:16px 16px;position:relative;border-right:1px solid var(--line);
+    display:flex;flex-direction:column;gap:6px;min-width:150px;
+  }
+  .pstep:last-child{border-right:none;}
+  .pstep::after{
+    content:"→";position:absolute;right:-11px;top:50%;transform:translateY(-50%);
+    color:var(--ink-soft);font-size:.9rem;z-index:1;background:var(--paper-raised);
+    width:20px;text-align:center;
+  }
+  .pstep:last-child::after{content:"";}
+  .pstep__n{font-family:"JetBrains Mono",monospace;font-size:.68rem;color:var(--red);font-weight:700;}
+  .pstep__t{font-weight:700;font-size:.86rem;color:var(--ink);}
+  .pstep__d{font-size:.78rem;color:var(--ink-soft);line-height:1.4;}
+  .pstep--branch{background:var(--red-soft);}
+  @media (max-width:640px){
+    .pipeline{flex-direction:column;}
+    .pstep{border-right:none;border-bottom:1px solid var(--line);}
+    .pstep:last-child{border-bottom:none;}
+    .pstep::after{content:"↓";right:auto;left:16px;top:auto;bottom:-11px;transform:none;width:auto;height:16px;}
+  }
+
+  .destcard{
+    display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:1em 0 1.8em;
+    font-size:.88rem;
+  }
+  .destcard dt{font-family:"JetBrains Mono",monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);align-self:start;padding-top:2px;}
+  .destcard dd{margin:0;color:var(--ink);}
+
+  .tablewrap{overflow-x:auto;margin:1.2em 0 1.8em;border:1px solid var(--line);border-radius:10px;}
+  table{border-collapse:collapse;width:100%;font-size:.84rem;min-width:480px;}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);}
+  th{font-family:"JetBrains Mono",monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);background:var(--paper);font-weight:600;}
+  td{font-family:"JetBrains Mono",monospace;font-size:.8rem;color:var(--ink);}
+  tr:last-child td{border-bottom:none;}
+
+  /* ---- Drive tree ---- */
+  .drivetree{
+    background:var(--paper-raised);border:1px solid var(--line);border-radius:14px;
+    padding:22px 24px;margin:1.6em 0 2em;box-shadow:var(--shadow);
+  }
+  .drivetree__account{
+    display:flex;align-items:center;gap:8px;font-family:"JetBrains Mono",monospace;
+    font-size:.78rem;color:var(--ink-soft);margin-bottom:14px;
+  }
+  .drivetree__account .mono{background:transparent;border:none;padding:0;color:var(--navy);}
+  .drivetree__folder{
+    display:flex;align-items:center;gap:10px;font-weight:700;color:var(--navy);
+    font-size:.98rem;padding-bottom:14px;margin-bottom:14px;border-bottom:1px dashed var(--line);
+  }
+  .drivetree__folder .ico{font-size:1.1rem;}
+  .drivetree__children{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding-left:8px;}
+  @media (max-width:560px){.drivetree__children{grid-template-columns:1fr;}}
+  .drivetree__child{
+    position:relative;padding:14px 16px 14px 22px;background:var(--paper);border:1px solid var(--line);
+    border-radius:10px;
+  }
+  .drivetree__child::before{
+    content:"";position:absolute;left:9px;top:16px;width:8px;height:8px;border-radius:50%;
+    background:var(--gold);
+  }
+  .drivetree__child-name{font-weight:700;font-size:.86rem;color:var(--ink);margin-bottom:4px;}
+  .drivetree__child-tag{font-size:.76rem;color:var(--red);font-weight:600;}
+
+  .overview th{white-space:nowrap;}
+  .overview td{white-space:normal;font-family:"Open Sans",sans-serif;font-size:.86rem;}
+  .overview td.mono-cell{font-family:"JetBrains Mono",monospace;font-size:.78rem;}
+  .overview .flowname{font-weight:700;color:var(--navy);font-family:"Open Sans",sans-serif;}
+
+  .callout{
+    border-left:3px solid var(--gold);background:var(--paper-raised);border-radius:0 10px 10px 0;
+    padding:14px 18px;margin:1.4em 0;font-size:.92rem;color:var(--ink-soft);
+  }
+  .callout strong{color:var(--ink);}
+  .callout--warn{border-left-color:var(--red);}
+
+  .foot{margin-top:4em;padding-top:1.4em;border-top:1px solid var(--line);color:var(--ink-soft);font-size:.82rem;}
+</style>
+
+<div class="page">
+
+  <p class="eyebrow">Documentação de referência — projeto ID22</p>
+  <h1>Anatomia do site AP Soluções Humanas</h1>
+  <p class="lede">Um mapa completo de como o site funciona hoje: o que cada página comunica, para onde cada CTA leva, e o que acontece nos bastidores quando alguém envia um dos três formulários. Este texto é a base para montar depois um material visual único sobre o projeto.</p>
+
+  <h2>Identidade visual</h2>
+  <p>A paleta institucional combina <strong>azul-marinho</strong> (estrutura, títulos, autoridade), <strong>vermelho</strong> (ação — todo CTA principal do site) e <strong>dourado</strong> (detalhes, categorização, itens de apoio), sobre uma base neutra quente.</p>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch__chip" style="background:#252550"></div><div class="swatch__name">Navy</div><div class="swatch__hex">#252550</div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#B31D1A"></div><div class="swatch__name">Vermelho</div><div class="swatch__hex">#B31D1A</div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#B8923F"></div><div class="swatch__name">Dourado</div><div class="swatch__hex">#B8923F</div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#1C1C1C"></div><div class="swatch__name">Ink</div><div class="swatch__hex">#1C1C1C</div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#FAF8F3;box-shadow:inset 0 0 0 1px #e2ddd2"></div><div class="swatch__name">Cream</div><div class="swatch__hex">#FAF8F3</div></div>
+    <div class="swatch"><div class="swatch__chip" style="background:#EFEFEF;box-shadow:inset 0 0 0 1px #e2ddd2"></div><div class="swatch__name">Gray (Soluções)</div><div class="swatch__hex">#EFEFEF</div></div>
+  </div>
+
+  <p>O <strong>MeEscutaRH</strong> é o único ponto fora do sistema: vive numa página isolada, com seu próprio CSS embutido, gradiente <code>#252550 → #1D1D1E</code> (navy pra grafite) e um vermelho ligeiramente diferente (<code>#B31D1A</code>/<code>#8F1714</code> em vez do <code>#B31D1A</code>/<code>#8C1614</code> do resto do site) — pequeno o suficiente pra passar despercebido, mas real. Faz sentido: é um canal confidencial, e precisa parecer mais "oficial/institucional" do que "página de marketing".</p>
+
+  <div class="type-sample">
+    <div class="type-row">
+      <span class="type-row__label">Roboto Slab</span>
+      <span class="type-row__sample" style="font-family:'Roboto Slab',serif;font-weight:700;font-size:1.3rem;color:var(--navy);">Títulos e headings — todas as páginas institucionais</span>
+    </div>
+    <div class="type-row">
+      <span class="type-row__label">Open Sans</span>
+      <span class="type-row__sample" style="font-family:'Open Sans',sans-serif;font-size:1.05rem;">Corpo de texto, botões, formulários — a fonte de trabalho do site inteiro</span>
+    </div>
+    <div class="type-row">
+      <span class="type-row__label">Open Sans 800</span>
+      <span class="type-row__sample" style="font-family:'Open Sans',sans-serif;font-weight:800;font-size:1.05rem;color:var(--navy);">MeEscutaRH usa só Open Sans, até nos títulos — sem Roboto Slab</span>
+    </div>
+  </div>
+  <p style="font-size:.86rem;color:var(--ink-soft);">Carregadas via Google Fonts: <code>Roboto:400,500,600,700</code> · <code>Roboto+Slab:600,700</code> · <code>Open+Sans:400,600,700</code> (páginas institucionais) e <code>Open+Sans:400,600,700,800</code> (MeEscutaRH, isolado).</p>
+
+  <h2>Mapa do site</h2>
+  <ul class="sitemap">
+    <li><span class="path">/</span><span class="desc">Home — a porta de entrada e o resumo de tudo</span></li>
+    <li><span class="path">/quem-somos</span><span class="desc">História, método e a fundadora Angelina Pereira</span></li>
+    <li><span class="path">/solucoes</span><span class="desc">Catálogo dos 6 serviços</span></li>
+    <li><span class="path">/contato</span><span class="desc">Formulário de mensagem + canais diretos</span></li>
+    <li><span class="path">/cadastrar-curriculo</span><span class="desc">Banco de talentos para recrutamento</span></li>
+    <li><span class="path">/me-escuta-rh</span><span class="desc">Canal confidencial — sub-marca isolada</span></li>
+  </ul>
+  <p style="font-size:.86rem;color:var(--ink-soft);">Todas as URLs são "limpas" (sem <code>.html</code>) via reescrita no <code>.htaccess</code> — acessar com a extensão redireciona (301) para a versão sem extensão.</p>
+
+  <h2>Página a página — o que a copy quer dizer</h2>
+
+  <div class="pagecard">
+    <div class="pagecard__head"><span class="pagecard__title">Home</span><span class="pagecard__path">/</span></div>
+    <p>Abre nomeando a dor sem rodeios — <em>"clima pesado, dificuldade em reter pessoas, falta de estrutura no RH"</em> — e imediatamente reformula isso como algo resolvível: <em>"isso pode — e deve — ser resolvido"</em>. É a estrutura clássica dor → alívio, com uma promessa de simplicidade ("sem complicação") pra reduzir a resistência de quem está pesquisando.</p>
+    <p>Os <strong>6 pilares</strong> (Integração → Acolhimento → Treinamento → Feedback → Acompanhamento → Desligamento) aparecem como prova de método: não é consultoria genérica, é um sistema com nome e etapas, mapeado sobre a jornada inteira do colaborador. As <strong>Soluções em Destaque</strong> traduzem o método em produtos vendáveis. Os depoimentos fecham com prova social antes do rodapé.</p>
+    <h4>CTAs da página</h4>
+    <div class="ctas">
+      <span class="cta cta--soft">Conheça Nossas Soluções → /solucoes</span>
+      <span class="cta cta--hard">Comece com um diagnóstico gratuito → Google Forms</span>
+      <span class="cta cta--soft">Saiba Mais Sobre Nossa Equipe → /quem-somos</span>
+      <span class="cta cta--hard">Agende um diagnóstico gratuito → WhatsApp</span>
+    </div>
+  </div>
+
+  <div class="pagecard">
+    <div class="pagecard__head"><span class="pagecard__title">Quem Somos</span><span class="pagecard__path">/quem-somos</span></div>
+    <p>Troca o "o quê" pelo "quem": se posiciona como <em>"sua Parceira em RH Humanizada"</em> antes de qualquer lista de serviços. A narrativa de origem (fundada por uma especialista, +10 anos) existe pra justificar autoridade sem soar corporativo — o texto sempre junta um argumento técnico a um humano ("une técnica e sensibilidade").</p>
+    <p>Os 6 pilares voltam aqui detalhados em três camadas por pilar — <strong>o que implementamos</strong> (a entrega concreta), <strong>por que isso importa</strong> (a lógica) e <strong>resultado</strong> (o benefício de negócio) — transformando um conceito abstrato em algo auditável. A caixa lateral resume tudo em 3 bullets pra quem só bateu o olho.</p>
+    <h4>CTAs da página</h4>
+    <div class="ctas">
+      <span class="cta cta--hard">Comece com um diagnóstico gratuito → Google Forms</span>
+      <span class="cta cta--soft">Ver soluções → /solucoes</span>
+      <span class="cta cta--hard">Agende um diagnóstico gratuito → WhatsApp</span>
+    </div>
+  </div>
+
+  <div class="pagecard">
+    <div class="pagecard__head"><span class="pagecard__title">Soluções</span><span class="pagecard__path">/solucoes</span></div>
+    <p>Página de maior intenção de compra — por isso o CTA aparece <strong>antes</strong> de qualquer explicação, logo no hero. É o catálogo puro: os mesmos 6 serviços da Home, mas sem o contexto emocional em volta, porque quem chega aqui já passou da fase de ser convencido. Fecha com uma pergunta direta ("Pronto para Transformar o RH da Sua Empresa?") — o empurrão final clássico de página de vendas.</p>
+    <h4>CTAs da página</h4>
+    <div class="ctas">
+      <span class="cta cta--hard">Fale com um Especialista → WhatsApp</span>
+      <span class="cta cta--hard">Agende um diagnóstico gratuito → WhatsApp</span>
+    </div>
+  </div>
+
+  <div class="pagecard">
+    <div class="pagecard__head"><span class="pagecard__title">Contato</span><span class="pagecard__path">/contato</span></div>
+    <p>A página mais neutra do site — só "Fale Conosco", sem venda. Divide a tela em duas saídas equivalentes: o formulário, para quem prefere escrever uma vez e esperar retorno, e o card de contatos diretos (e-mail, WhatsApp, telefone, Instagram), pra quem prefere falar agora. Nenhuma tenta convencer a pessoa de nada — a decisão de comprar já foi tomada antes de chegar aqui.</p>
+    <h4>Formulário</h4>
+    <p style="font-size:.9rem;">Nome da Empresa · Nome · Whatsapp para contato · E-mail · Assunto · Mensagem — todos obrigatórios.</p>
+  </div>
+
+  <div class="pagecard">
+    <div class="pagecard__head"><span class="pagecard__title">Cadastrar Currículo</span><span class="pagecard__path">/cadastrar-curriculo</span></div>
+    <p>Fala com um público diferente de todo o resto do site: candidatos, não contratantes. A copy trabalha uma objeção específica de quem já cadastrou currículo em algum lugar e nunca ouviu falar de novo — repete duas vezes, de duas formas, que o cadastro fica ativo pra vagas futuras <em>"sem a necessidade de novos cadastros"</em>. O bloco "Conectando Talentos a Empresas" no meio da página existe só pra sustentar essa confiança antes do formulário.</p>
+    <h4>Formulário</h4>
+    <p style="font-size:.9rem;">Nome Completo · Telefone/Whatsapp · E-mail · Data de nascimento · Qual o seu perfil (texto livre) · Área de interesse (lista) · Especifique seu interesse · Anexar Currículo (PDF/DOC/DOCX, obrigatório).</p>
+  </div>
+
+  <div class="pagecard">
+    <div class="pagecard__head"><span class="pagecard__title">MeEscutaRH</span><span class="pagecard__path">/me-escuta-rh</span></div>
+    <p>Muda de registro completamente: em vez de vender, tranquiliza. A palavra "confidencial" aparece repetidamente, e a página define de cara os quatro motivos válidos de contato — <strong>envio de documentos</strong> (atestados, admissionais), <strong>dúvidas</strong> (holerite, benefícios, ponto), <strong>denúncias</strong> (assédio, conflitos, risco psicossocial) e <strong>sugestões</strong> — porque cada um leva a um formulário diferente por baixo dos panos.</p>
+    <p>O formulário é o único de verdade dinâmico do site: os campos mudam de acordo com a resposta. Selecionar uma empresa da lista ou "Não encontrei a empresa" decide se aparecem os campos manuais de empresa/cidade/estado. O tipo de solicitação decide se aparecem setor + motivo (Denúncias) ou o campo de anexo (Envio de documentos). E os dados de contato (Nome/WhatsApp/E-mail) só viram obrigatórios em Documentos e Dúvidas — em Denúncias e Sugestões, continuam opcionais, de propósito, pra não travar quem quer se manter anônimo.</p>
+  </div>
+
+  <h2>Formulários e automações (n8n)</h2>
+  <p>Os três formulários enviam os dados como <code>FormData</code> direto para um webhook do n8n hospedado em <code>criadordigital-n8n-webhook.syxuur.easypanel.host</code>. Cada fluxo é independente, mas os três compartilham a mesma conta Google (Drive/Sheets como <strong>"Angelina"</strong> / <strong>"Google Sheets account 2"</strong>) e o mesmo remetente de e-mail, <code>assessoria@apsolucoeshumanas.com.br</code> (via <strong>"SMTP account 2"</strong>).</p>
+
+  <h3>Onde os anexos ficam guardados</h3>
+  <p>Os dois formulários com upload de arquivo (MeEscutaRH e Cadastrar Currículo) salvam o anexo numa pasta própria dentro da mesma conta do Google Drive usada pelas automações:</p>
+  <div class="drivetree">
+    <div class="drivetree__account"><span class="ico">👤</span> Conta Google Drive — <span class="mono">apsolucoesindaiatuba@gmail.com</span></div>
+    <div class="drivetree__folder"><span class="ico">📁</span> SITE AP SOLUÇÕES HUMANAS</div>
+    <div class="drivetree__children">
+      <div class="drivetree__child">
+        <div class="drivetree__child-name">📎 CURRICULO FORMULARIO SITE</div>
+        <div class="drivetree__child-tag">← anexos de Cadastrar Currículo</div>
+      </div>
+      <div class="drivetree__child">
+        <div class="drivetree__child-name">📎 ME ESCUTA RH FORMULARIO SITE</div>
+        <div class="drivetree__child-tag">← anexos de MeEscutaRH (quando houver)</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Para onde vai cada envio, de relance</h3>
+  <div class="tablewrap">
+    <table class="overview">
+      <thead><tr><th>Formulário</th><th>Anexo (Drive)</th><th>Planilha</th><th>E-mail de aviso</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="flowname">MeEscutaRH</td>
+          <td>ME ESCUTA RH FORMULARIO SITE <em>(só se anexar documento)</em></td>
+          <td class="mono-cell">AP Soluções - Candidaturas → aba <code>MeEscutaRH.26</code></td>
+          <td class="mono-cell">meescutarh@apsolucoeshumanas.com.br</td>
+        </tr>
+        <tr>
+          <td class="flowname">Cadastrar Currículo</td>
+          <td>CURRICULO FORMULARIO SITE <em>(sempre)</em></td>
+          <td class="mono-cell">AP Soluções - Candidaturas → aba <code>Candidaturas</code></td>
+          <td class="mono-cell">vagas@apsolucoeshumanas.com.br</td>
+        </tr>
+        <tr>
+          <td class="flowname">Contato</td>
+          <td>— <em>(sem upload)</em></td>
+          <td>— <em>(não grava em planilha)</em></td>
+          <td class="mono-cell">assessoria@apsolucoeshumanas.com.br</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>MeEscutaRH <span class="mono">POST /webhook/MeEscutaRH</span></h3>
+  <div class="pipeline">
+    <div class="pstep"><span class="pstep__n">1</span><span class="pstep__t">Webhook</span><span class="pstep__d">recebe o FormData</span></div>
+    <div class="pstep pstep--branch"><span class="pstep__n">2</span><span class="pstep__t">Tem anexo?</span><span class="pstep__d">só quando Tipo = "Envio de documentos"</span></div>
+    <div class="pstep"><span class="pstep__n">3a</span><span class="pstep__t">Upload no Drive</span><span class="pstep__d">se sim</span></div>
+    <div class="pstep"><span class="pstep__n">3b</span><span class="pstep__t">Monta dados</span><span class="pstep__d">13 campos, sempre</span></div>
+    <div class="pstep"><span class="pstep__n">4</span><span class="pstep__t">Planilha + E-mail</span><span class="pstep__d">em paralelo</span></div>
+    <div class="pstep"><span class="pstep__n">5</span><span class="pstep__t">Responde ao site</span><span class="pstep__d">{"status":"ok"}</span></div>
+  </div>
+  <dl class="destcard">
+    <dt>Pasta Drive</dt><dd>"ME ESCUTA RH - FORMULÁRIO SITE" <span class="mono">1ujLutx…6pLW</span></dd>
+    <dt>Nome do arquivo</dt><dd><code>MeEscutaRH - {empresa} - {AAAAMMDD_hhmmss}</code></dd>
+    <dt>Planilha</dt><dd>"AP Soluções - Candidaturas" → aba <code>MeEscutaRH.26</code></dd>
+    <dt>E-mail para</dt><dd><code>meescutarh@apsolucoeshumanas.com.br</code></dd>
+  </dl>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Campo no fluxo</th><th>Coluna na planilha</th></tr></thead>
+      <tbody>
+        <tr><td>Data_Hora</td><td>Data_Hora</td></tr>
+        <tr><td>Nome_Empresa</td><td>Nome_Empresa</td></tr>
+        <tr><td>Estado</td><td>Estado</td></tr>
+        <tr><td>Setor</td><td>Setor</td></tr>
+        <tr><td>Tipo_Solicitacao</td><td>Tipo_Solicitacao</td></tr>
+        <tr><td>Motivo_Denuncia</td><td>Motivo_Denuncia</td></tr>
+        <tr><td>Eh_Cliente</td><td>Eh_Cliente</td></tr>
+        <tr><td>Whatsapp</td><td>Whatsapp</td></tr>
+        <tr><td>Email</td><td>Email</td></tr>
+        <tr><td>Anexo_Link</td><td>Anexo_Link</td></tr>
+        <tr><td>Nome</td><td>"Nome " <em style="font-family:'Open Sans',sans-serif;">(com espaço no fim)</em></td></tr>
+        <tr><td>Descrição_Situação</td><td>"Descrição_Situacao" <em style="font-family:'Open Sans',sans-serif;">(sem acento no final)</em></td></tr>
+        <tr><td>Cidade</td><td>"Cidade " <em style="font-family:'Open Sans',sans-serif;">(com espaço no fim)</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Cadastrar Currículo <span class="mono">POST /webhook/CadastrarCurriculo</span></h3>
+  <div class="pipeline">
+    <div class="pstep"><span class="pstep__n">1</span><span class="pstep__t">Webhook</span><span class="pstep__d">recebe o FormData</span></div>
+    <div class="pstep pstep--branch"><span class="pstep__n">2</span><span class="pstep__t">Tem anexo?</span><span class="pstep__d">o currículo é sempre obrigatório no site</span></div>
+    <div class="pstep"><span class="pstep__n">3</span><span class="pstep__t">Upload no Drive</span><span class="pstep__d">sempre acontece</span></div>
+    <div class="pstep"><span class="pstep__n">4</span><span class="pstep__t">Monta dados</span><span class="pstep__d">9 campos</span></div>
+    <div class="pstep"><span class="pstep__n">5</span><span class="pstep__t">Planilha + E-mail</span><span class="pstep__d">em paralelo</span></div>
+    <div class="pstep"><span class="pstep__n">6</span><span class="pstep__t">Responde ao site</span><span class="pstep__d">{"status":"ok"}</span></div>
+  </div>
+  <dl class="destcard">
+    <dt>Pasta Drive</dt><dd>"CURRICULO FORMULARIO SITE" <span class="mono">1GZ2aRYfYV…GF-DT</span></dd>
+    <dt>Nome do arquivo</dt><dd><code>Currículo - {nome completo} - {AAAAMMDD_hhmmss}</code></dd>
+    <dt>Planilha</dt><dd>"AP Soluções - Candidaturas" → aba <code>Candidaturas</code> (a aba principal)</dd>
+    <dt>E-mail para</dt><dd><code>vagas@apsolucoeshumanas.com.br</code></dd>
+  </dl>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Campo no fluxo</th><th>Coluna na planilha</th></tr></thead>
+      <tbody>
+        <tr><td>Nome_Completo</td><td>Nome_Candidato</td></tr>
+        <tr><td>Telefone</td><td>Telefone_Whatsapp</td></tr>
+        <tr><td>Data_Nascimento</td><td>Data_nascimento</td></tr>
+        <tr><td>Perfil</td><td>Perfil_Candidato</td></tr>
+        <tr><td>Area_Interesse</td><td>Interesse_Principal</td></tr>
+        <tr><td>Especifique_Interesse</td><td>Outros_Interesse_Especificado</td></tr>
+        <tr><td>Curriculo_Link</td><td>Link_Curriculo</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Contato <span class="mono">POST /webhook/Contato</span></h3>
+  <div class="pipeline">
+    <div class="pstep"><span class="pstep__n">1</span><span class="pstep__t">Webhook</span><span class="pstep__d">recebe o FormData</span></div>
+    <div class="pstep"><span class="pstep__n">2</span><span class="pstep__t">Monta dados</span><span class="pstep__d">7 campos</span></div>
+    <div class="pstep"><span class="pstep__n">3</span><span class="pstep__t">Envia e-mail</span><span class="pstep__d">único destino, sem ramificação</span></div>
+    <div class="pstep"><span class="pstep__n">4</span><span class="pstep__t">Responde ao site</span><span class="pstep__d">{"status":"ok"}</span></div>
+  </div>
+  <dl class="destcard">
+    <dt>Sem anexo</dt><dd>o formulário de Contato não tem campo de arquivo</dd>
+    <dt>Sem planilha</dt><dd>este fluxo não grava em nenhuma planilha — vai só por e-mail</dd>
+    <dt>E-mail para</dt><dd><code>assessoria@apsolucoeshumanas.com.br</code> (mesmo endereço que envia)</dd>
+  </dl>
+
+  <div class="foot">Documento de referência interno — AP Soluções Humanas / ID22. Reflete o estado do site em produção nesta data.</div>
+
+</div>

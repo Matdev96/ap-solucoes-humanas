@@ -1,0 +1,20 @@
+# AP Soluções Humanas
+
+> Consultoria e assessoria em RH humanizado para Pequenas e Médias Empresas, com um método estruturado em 6 pilares: Integração, Acolhimento, Treinamento, Feedback, Acompanhamento e Desligamento.
+
+A AP Soluções Humanas é liderada por Angelina Pereira, especialista em gestão de pessoas e gestão empresarial com mais de 10 anos de experiência. A empresa atua com mentoria estratégica, assessoria permanente de RH, mapeamento comportamental e pesquisa de clima, treinamento de departamento pessoal (DP) e desenvolvimento de líderes, implantação de ferramentas de gestão, e mantém um canal de escuta confidencial para empresas clientes chamado MeEscutaRH.
+
+## Páginas
+
+- [Home](https://apsolucoeshumanas.com.br/): Apresentação da empresa, o método AP em 6 pilares e as soluções em destaque.
+- [Quem Somos](https://apsolucoeshumanas.com.br/quem-somos): História da empresa, o método AP detalhado (o que é implementado e o resultado de cada pilar) e a equipe, liderada por Angelina Pereira.
+- [Soluções](https://apsolucoeshumanas.com.br/solucoes): Catálogo dos 6 serviços de RH oferecidos a Pequenas e Médias Empresas.
+- [Contato](https://apsolucoeshumanas.com.br/contato): Formulário de contato e canais diretos de atendimento (WhatsApp, e-mail, telefone, Instagram).
+- [Cadastrar Currículo](https://apsolucoeshumanas.com.br/cadastrar-curriculo): Formulário para candidatos cadastrarem currículo em um banco de talentos, usado em processos seletivos das empresas clientes.
+- [MeEscutaRH](https://apsolucoeshumanas.com.br/me-escuta-rh): Canal confidencial para colaboradores de empresas clientes enviarem documentos, tirarem dúvidas, fazerem denúncias ou darem sugestões.
+
+## Contato
+
+- E-mail: assessoria@apsolucoeshumanas.com.br
+- WhatsApp: +55 19 99829-0064
+- Instagram: https://www.instagram.com/gepereira.apsolucoeshumanas/

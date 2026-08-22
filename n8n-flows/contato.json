@@ -1,0 +1,212 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "Contato",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "https://apsolucoeshumanas.com.br"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [-304, 400],
+      "id": "ct-webhook-0001",
+      "name": "Webhook1",
+      "webhookId": "ct-778fa281-457e-4f62-a4f2-contato0001"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f1",
+              "name": "Data_Hora",
+              "value": "={{ $now.format('dd/MM/yyyy HH:mm') }}",
+              "type": "string"
+            },
+            {
+              "id": "f2",
+              "name": "Nome_Empresa",
+              "value": "={{ $('Webhook1').item.json.body.empresa }}",
+              "type": "string"
+            },
+            {
+              "id": "f3",
+              "name": "Nome",
+              "value": "={{ $('Webhook1').item.json.body.nome }}",
+              "type": "string"
+            },
+            {
+              "id": "f4",
+              "name": "Whatsapp",
+              "value": "={{ $('Webhook1').item.json.body.whatsapp }}",
+              "type": "string"
+            },
+            {
+              "id": "f5",
+              "name": "Email",
+              "value": "={{ $('Webhook1').item.json.body.email }}",
+              "type": "string"
+            },
+            {
+              "id": "f6",
+              "name": "Assunto",
+              "value": "={{ $('Webhook1').item.json.body.assunto }}",
+              "type": "string"
+            },
+            {
+              "id": "f7",
+              "name": "Mensagem",
+              "value": "={{ $('Webhook1').item.json.body.mensagem }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [-80, 400],
+      "id": "ct-set-0002",
+      "name": "Montar dados"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1ZVqVwCwkZPlCM1QQu24CMKwl0yjYGSC47tadEyEKmJ0",
+          "mode": "list",
+          "cachedResultName": "AP Soluções - Candidaturas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ZVqVwCwkZPlCM1QQu24CMKwl0yjYGSC47tadEyEKmJ0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Contato",
+          "mode": "list",
+          "cachedResultName": "⚠️ Selecione/crie a aba 'Contato' nesta planilha"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Data_Hora": "={{ $json.Data_Hora }}",
+            "Nome_Empresa": "={{ $json.Nome_Empresa }}",
+            "Nome": "={{ $json.Nome }}",
+            "Whatsapp": "={{ $json.Whatsapp }}",
+            "Email": "={{ $json.Email }}",
+            "Assunto": "={{ $json.Assunto }}",
+            "Mensagem": "={{ $json.Mensagem }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            { "id": "Data_Hora", "displayName": "Data_Hora", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+            { "id": "Nome_Empresa", "displayName": "Nome_Empresa", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+            { "id": "Nome", "displayName": "Nome", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+            { "id": "Whatsapp", "displayName": "Whatsapp", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+            { "id": "Email", "displayName": "Email", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+            { "id": "Assunto", "displayName": "Assunto", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+            { "id": "Mensagem", "displayName": "Mensagem", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [192, 288],
+      "id": "ct-sheets-0003",
+      "name": "Append row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "6AFJYM7zW7EHx96x",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "=assessoria@apsolucoeshumanas.com.br",
+        "toEmail": "=assessoria@apsolucoeshumanas.com.br",
+        "subject": "=Novo contato pelo site - {{ $json.Assunto }}",
+        "emailFormat": "text",
+        "text": "=Nova mensagem recebida pelo formulário de Contato do site:\n\nEmpresa: {{ $json.Nome_Empresa }}\nNome: {{ $json.Nome }}\nWhatsApp: {{ $json.Whatsapp }}\nE-mail: {{ $json.Email }}\nAssunto: {{ $json.Assunto }}\n\nMensagem:\n{{ $json.Mensagem }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [192, 528],
+      "id": "ct-email-0004",
+      "name": "Enviar e-mail",
+      "webhookId": "ct-c541116d-12f9-45d3-9303-contato0002",
+      "credentials": {
+        "smtp": {
+          "id": "YktzIH4ZBXiu2XVz",
+          "name": "SMTP account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [432, 400],
+      "id": "ct-merge-0005",
+      "name": "Aguardar Sheets+Email"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"status\": \"ok\" } }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "https://apsolucoeshumanas.com.br"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [640, 400],
+      "id": "ct-respond-0006",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "connections": {
+    "Webhook1": {
+      "main": [[{ "node": "Montar dados", "type": "main", "index": 0 }]]
+    },
+    "Montar dados": {
+      "main": [
+        [
+          { "node": "Append row in sheet1", "type": "main", "index": 0 },
+          { "node": "Enviar e-mail", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Append row in sheet1": {
+      "main": [[{ "node": "Aguardar Sheets+Email", "type": "main", "index": 0 }]]
+    },
+    "Enviar e-mail": {
+      "main": [[{ "node": "Aguardar Sheets+Email", "type": "main", "index": 1 }]]
+    },
+    "Aguardar Sheets+Email": {
+      "main": [[{ "node": "Respond to Webhook", "type": "main", "index": 0 }]]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "instanceId": "ap-solucoes-humanas-contato"
+  }
+}

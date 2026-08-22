@@ -5,7 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MeEscutaRH - AP Soluções Humanas</title>
 <meta name="description" content="MeEscutaRH: um canal seguro para colaboradores e empresas. Canal confidencial para envio de documentos, dúvidas, sugestões e denúncias.">
-<link rel="icon" href="https://apsolucoeshumanas.com.br/wp-content/uploads/2026/03/cropped-atual-logo-AP-SOLUCOES-SUMANAS-192x192.png">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apsolucoeshumanas.com.br/me-escuta-rh">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="AP Soluções Humanas">
+<meta property="og:title" content="MeEscutaRH - AP Soluções Humanas">
+<meta property="og:description" content="MeEscutaRH: um canal seguro para colaboradores e empresas. Canal confidencial para envio de documentos, dúvidas, sugestões e denúncias.">
+<meta property="og:url" content="https://apsolucoeshumanas.com.br/me-escuta-rh">
+<meta property="og:image" content="https://apsolucoeshumanas.com.br/assets/img/foto-home-secao1.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MeEscutaRH - AP Soluções Humanas">
+<meta name="twitter:description" content="MeEscutaRH: um canal seguro para colaboradores e empresas. Canal confidencial para envio de documentos, dúvidas, sugestões e denúncias.">
+<meta name="twitter:image" content="https://apsolucoeshumanas.com.br/assets/img/foto-home-secao1.png">
+<link rel="icon" href="assets/img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&display=swap" rel="stylesheet">
 <style>
@@ -36,13 +49,13 @@
   .mer-header{border-bottom:1px solid var(--mer-line);}
   .mer-header .mer-header-inner{
     position:relative;max-width:1160px;margin:0 auto;padding:14px 24px;display:flex;
-    align-items:center;justify-content:space-between;gap:20px;
+    align-items:center;justify-content:space-between;gap:20px;min-height:80px;
   }
-  .mer-header img{height:72px;width:auto;}
+  .mer-header img{height:100px;width:auto;}
   .mer-header nav ul{display:flex;gap:22px;flex-wrap:wrap;}
   .mer-header nav a{font-weight:600;font-size:.92rem;padding:4px 0;border-bottom:2px solid transparent;}
-  .mer-header nav a:hover{color:var(--mer-navy);border-color:var(--mer-navy);}
-  .mer-header nav a.is-active{color:var(--mer-red);border-color:var(--mer-red);}
+  .mer-header nav a:hover{color:var(--mer-red-dark);}
+  .mer-header nav a.is-active{color:var(--mer-red);}
 
   .mer-nav-toggle{
     display:none;background:none;border:none;cursor:pointer;padding:6px;
@@ -185,16 +198,16 @@
 
 <header class="mer-header">
   <div class="mer-header-inner">
-    <a href="https://apsolucoeshumanas.com.br/"><img src="https://apsolucoeshumanas.com.br/wp-content/uploads/2026/03/Logo-AP-Solucoes-cabecalho.jpeg" alt="AP Soluções Humanas"></a>
+    <a href="/"><img src="assets/img/logo.jpeg" alt="AP Soluções Humanas"></a>
     <button class="mer-nav-toggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <nav aria-label="Menu">
       <ul>
-        <li><a href="https://apsolucoeshumanas.com.br/">Home</a></li>
-        <li><a href="https://apsolucoeshumanas.com.br/index.php/quem-somos/">Quem Somos</a></li>
-        <li><a href="https://apsolucoeshumanas.com.br/index.php/solucoes/">Soluções</a></li>
-        <li><a href="https://apsolucoeshumanas.com.br/index.php/contato/">Contato</a></li>
-        <li><a href="https://apsolucoeshumanas.com.br/index.php/cadastrar-curriculo/">Cadastrar Currículo</a></li>
-        <li><a href="https://apsolucoeshumanas.com.br/index.php/me-escuta-rh/" class="is-active">MeEscutaRH</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="quem-somos">Quem Somos</a></li>
+        <li><a href="solucoes">Soluções</a></li>
+        <li><a href="contato">Contato</a></li>
+        <li><a href="cadastrar-curriculo">Cadastrar Currículo</a></li>
+        <li><a href="me-escuta-rh" class="is-active">MeEscutaRH</a></li>
       </ul>
     </nav>
   </div>
@@ -203,7 +216,7 @@
 <section class="mer-split-bg">
 <div class="mer-split">
   <div class="mer-split-text">
-    <img class="mer-icon" src="https://apsolucoeshumanas.com.br/wp-content/uploads/elementor/thumbs/icone-me-escuta-rh-dourado-rk9xhp54v6rqm552764ll3u6ivcxnelw49zzkwpb6w.png" alt="Ícone MeEscutaRH">
+    <img class="mer-icon" src="assets/img/icone-meescuta.png" alt="Ícone MeEscutaRH">
     <p class="mer-eyebrow">Canal Confidencial</p>
     <h1 class="mer-title"><span class="mer-brand-name">MeEscutaRH</span>: um canal seguro para colaboradores e empresas</h1>
     <p class="mer-subtitle">Canal confidencial para envio de documentos, dúvidas e sugestões para empresas clientes. As denúncias podem ser registradas de forma segura por colaboradores de qualquer empresa.</p>
@@ -245,9 +258,26 @@
           <label for="empresa">Empresa <span class="mer-req">*</span></label>
           <select id="empresa" name="empresa" required>
             <option value="" disabled selected>Selecione a empresa...</option>
-            <option value="110 - RANCHO COLONIAL GRILL">110 - RANCHO COLONIAL GRILL</option>
-            <option value="120 - STEEL NA VEIA">120 - STEEL NA VEIA</option>
-            <option value="130 - AXOLOTL COOKIES &amp; COFFEE">130 - AXOLOTL COOKIES &amp; COFFEE</option>
+            <option value="110">110</option>
+            <option value="120">120</option>
+            <option value="130">130</option>
+            <option value="140">140</option>
+            <option value="150">150</option>
+            <option value="160">160</option>
+            <option value="170">170</option>
+            <option value="180">180</option>
+            <option value="190">190</option>
+            <option value="200">200</option>
+            <option value="210">210</option>
+            <option value="220">220</option>
+            <option value="230">230</option>
+            <option value="240">240</option>
+            <option value="250">250</option>
+            <option value="260">260</option>
+            <option value="270">270</option>
+            <option value="280">280</option>
+            <option value="290">290</option>
+            <option value="300">300</option>
             <option value="__OUTRA__">Não encontrei a empresa</option>
           </select>
         </div>
@@ -349,7 +379,7 @@
 <footer class="mer-footer">
   <div class="mer-footer-grid">
     <div>
-      <img src="https://apsolucoeshumanas.com.br/wp-content/uploads/2026/03/AP-logo-site-Branco-fundo-transparenteFinal.png" alt="AP Soluções Humanas">
+      <img src="assets/img/logo-footer.png" alt="AP Soluções Humanas">
       <p>Consultoria e Assessoria em RH humanizado para Pequenas e Médias Empresas. Transformamos equipes com empatia e estratégia.</p>
       <div class="mer-social-row">
         <a href="https://www.instagram.com/gepereira.apsolucoeshumanas/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg></a>
@@ -362,12 +392,12 @@
     <div>
       <h4>Links Rápidos</h4>
       <ul class="mer-footer-links">
-        <li><a href="https://apsolucoeshumanas.com.br/">Home</a></li>
-        <li><a href="https://apsolucoeshumanas.com.br/index.php/quem-somos/">Quem Somos</a></li>
-        <li><a href="https://apsolucoeshumanas.com.br/index.php/solucoes/">Soluções</a></li>
-        <li><a href="https://apsolucoeshumanas.com.br/index.php/contato/">Contato</a></li>
-        <li><a href="https://apsolucoeshumanas.com.br/index.php/cadastrar-curriculo/">Cadastrar Currículo</a></li>
-        <li><a href="https://apsolucoeshumanas.com.br/index.php/me-escuta-rh/" class="is-active">MeEscutaRH</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="quem-somos">Quem Somos</a></li>
+        <li><a href="solucoes">Soluções</a></li>
+        <li><a href="contato">Contato</a></li>
+        <li><a href="cadastrar-curriculo">Cadastrar Currículo</a></li>
+        <li><a href="me-escuta-rh" class="is-active">MeEscutaRH</a></li>
       </ul>
     </div>
 
@@ -380,7 +410,7 @@
       </ul>
     </div>
   </div>
-  <div class="mer-footer-bottom-bar">© 2025 AP Soluções Humanas. Todos os direitos reservados. | <a href="https://apsolucoeshumanas.com.br/">Política de Privacidade</a></div>
+  <div class="mer-footer-bottom-bar">© 2025 AP Soluções Humanas. Todos os direitos reservados. | <a href="/">Política de Privacidade</a></div>
 </footer>
 
 <script>

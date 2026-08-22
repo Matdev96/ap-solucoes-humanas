@@ -1,0 +1,19 @@
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# 1) Se alguém acessar ".../pagina.html", redireciona (301) para ".../pagina" (sem a extensão)
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# 2) Quando a URL não tem extensão, serve o arquivo .html correspondente por baixo dos panos
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^([^.]+)$ $1.html [L]
+</IfModule>
+
+# BEGIN Really Simple Security Disable directory indexing
+# Disable directory indexing to prevent listing of directory contents
+Options -Indexes
+# END Really Simple Security Disable directory indexing
